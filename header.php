@@ -1,116 +1,99 @@
-<?php // header.php ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinguaFlow - Dein Sprachcoach</title>
+    <title>LinguaFlow – Dein Sprachcoach</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2A5C82;
-            --secondary-color: #38A3A5;
+            --primary: #2A5C82;
+            --secondary: #38A3A5;
         }
 
         body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f5f7fa;
-}
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background-color: #f5f7fa;
+        }
 
         .sidebar {
-            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
-            padding: 20px;
-            color: white;
+            height: 100vh;
+            width: 220px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
             position: fixed;
-            height: 100%;
-            width: 250px;
+            top: 56px; /* Höhe der Topbar */
+            left: 0;
+            padding-top: 20px;
+            z-index: 1030;
         }
 
-        .logo {
-            font-size: 1.8em;
-            margin-bottom: 40px;
-            font-weight: bold;
-        }
-
-        nav a {
-            display: block;
+        .sidebar .nav-link {
             color: white;
-            text-decoration: none;
-            padding: 15px;
-            margin: 10px 0;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+        }
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
-            transition: 0.3s;
         }
 
-        nav a:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        .auth-buttons {
-            position: absolute;
-            bottom: 20px;
-            width: 210px;
-        }
-
-        footer {
+        .topbar {
+            background-color: white;
+            height: 56px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
             position: fixed;
-            bottom: 0;
             width: 100%;
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9em;
+            top: 0;
+            z-index: 1040;
         }
-        .sidebar {
-    background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
-    padding: 30px 20px;
-    color: white;
-    height: 100vh;
-    width: 250px;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
 
-.logo {
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 40px;
-    text-align: center;
-}
+        .topbar .brand {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.4rem;
+            text-decoration: none;
+        }
 
-nav a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: white;
-    text-decoration: none;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    transition: 0.3s;
-    font-size: 1.05em;
-}
+        .topbar .auth {
+            font-size: 1rem;
+        }
 
-nav a:hover {
-    background: rgba(255,255,255,0.2);
-}
+        .content {
+            margin-left: 220px;
+            margin-top: 56px;
+            padding: 30px;
+        }
 
-.auth-buttons a {
-    display: block;
-    text-align: center;
-    margin: 10px 0;
-}
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
 
+            .sidebar.show {
+                transform: translateX(0);
+            }
 
-.main-content {
-    padding: 40px;
-    margin-left: 250px; /* Platz für Sidebar */
-    background: #f5f7fa;
-}
+            .content {
+                margin-left: 0;
+            }
+        }
 
+        .navbar-toggler {
+            border: none;
+            background: transparent;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
 
     </style>
 </head>
@@ -119,7 +102,7 @@ nav a:hover {
         <div class="logo">LinguaFlow</div>
         <nav>
         <a href="index.php">🏠 Start</a>
-        <a href="vokabeltrainer.html">📖 Lernen</a>
+        <a href="learn.php">📖 Lernen</a>
         <a href="progress.php">📊 Fortschritt</a>
         <a href="community.php">💬 Community</a>
         <a href="profile.php">👤 Profil</a>
@@ -128,3 +111,27 @@ nav a:hover {
             <a href="login.php" style="background: white; color: var(--primary-color); padding: 10px 20px; border-radius: 25px;">Anmelden</a>
         </div>
     </div>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar d-flex flex-column" id="sidebar">
+    <nav class="nav flex-column">
+        <a href="index.php" class="nav-link">🏠 Start</a>
+        <a href="learn.php" class="nav-link">📖 Lernen</a>
+        <a href="progress.php" class="nav-link">📊 Fortschritt</a>
+        <a href="community.php" class="nav-link">💬 Community</a>
+        <a href="profile.php" class="nav-link">👤 Profil</a>
+    </nav>
+</div>
+
+<!-- Main Content Start -->
+<div class="content">
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleBtn = document.getElementById("sidebarToggle");
+        const sidebar = document.getElementById("sidebar");
+        toggleBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("show");
+        });
+    });
+</script>
