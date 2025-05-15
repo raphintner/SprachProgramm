@@ -12,12 +12,10 @@
         }
 
         body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            min-height: 100vh;
-        }
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f7fa;
+}
 
         .sidebar {
             background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
@@ -26,11 +24,6 @@
             position: fixed;
             height: 100%;
             width: 250px;
-        }
-
-        .main-content {
-            padding: 40px;
-            background: #f5f7fa;
         }
 
         .logo {
@@ -69,17 +62,67 @@
             padding: 10px;
             font-size: 0.9em;
         }
+        .sidebar {
+    background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+    padding: 30px 20px;
+    color: white;
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    transition: 0.3s;
+    font-size: 1.05em;
+}
+
+nav a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.auth-buttons a {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+
+
+.main-content {
+    padding: 40px;
+    margin-left: 250px; /* Platz für Sidebar */
+    background: #f5f7fa;
+}
+
+
     </style>
 </head>
 <body>
     <div class="sidebar">
         <div class="logo">LinguaFlow</div>
         <nav>
-            <a href="index.php">Start</a>
-            <a href="learn.php">Lernen</a>
-            <a href="progress.php">Fortschritt</a>
-            <a href="community.php">Community</a>
-            <a href="profile.php">Profil</a>
+        <a href="index.php">🏠 Start</a>
+        <a href="learn.php">📖 Lernen</a>
+        <a href="progress.php">📊 Fortschritt</a>
+        <a href="community.php">💬 Community</a>
+        <a href="profile.php">👤 Profil</a>
         </nav>
         <div class="auth-buttons">
             <a href="login.php" style="background: white; color: var(--primary-color); padding: 10px 20px; border-radius: 25px;">Anmelden</a>
