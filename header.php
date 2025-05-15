@@ -107,6 +107,7 @@
     <a href="index.php" class="brand">LinguaFlow</a>
     <div class="auth">
         <a href="login.php" class="btn btn-outline-primary">Anmelden</a>
+        <a href="auth.php?mode=register" class="btn btn-outline-primary">Jetzt registrieren</a>
     </div>
 </div>
 
