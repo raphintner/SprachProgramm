@@ -119,7 +119,7 @@ nav a:hover {
         <div class="logo">LinguaFlow</div>
         <nav>
         <a href="index.php">🏠 Start</a>
-        <a href="learn.php">📖 Lernen</a>
+        <a href="vokabeltrainer.html">📖 Lernen</a>
         <a href="progress.php">📊 Fortschritt</a>
         <a href="community.php">💬 Community</a>
         <a href="profile.php">👤 Profil</a>

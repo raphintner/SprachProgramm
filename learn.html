@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>LinguaFlow – Vokabeltraining</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f9fc;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .lernContainer {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .vokabelAnzeige {
+      font-size: 28px;
+      margin: 20px 0;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      width: 80%;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+    }
+
+    .feedbackText {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .naechsteBtn {
+      margin-top: 10px;
+      background-color: #10b981;
+    }
+
+    .naechsteBtn:hover {
+      background-color: #059669;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lernContainer">
+    <h2>📝 Vokabeltraining</h2>
+
+    <div class="vokabelAnzeige" id="vokabelAnzeigen">Dog</div>
+
+    <input type="text" id="eingabeFeld"
+      placeholder="Deutsche Übersetzung eingeben">
+
+    <button onclick="antwortPruefen()">Prüfen</button>
+
+    <div class="feedbackText" id="feedbackText"></div>
+
+    <button class="naechsteBtn" onclick="naechsteVokabel()">
+      Nächste Vokabel
+    </button>
+  </div>
+
+  <script>
+    // Array mit Vokabeln
+    const vokabeln = [
+      { englisch: "Dog", deutsch: "Hund" },
+      { englisch: "Cat", deutsch: "Katze" },
+      { englisch: "House", deutsch: "Haus" },
+      { englisch: "Apple", deutsch: "Apfel" }
+    ];
+
+    let aktuelleIndex = 0;
+
+    // Nächste Vokabel anzeigen
+    function naechsteVokabel() {
+      if (aktuelleIndex < vokabeln.length) {
+        document.getElementById("vokabelAnzeigen").innerText =
+          vokabeln[aktuelleIndex].englisch;
+
+        document.getElementById("eingabeFeld").value = "";
+        document.getElementById("feedbackText").innerText = "";
+      } else {
+        document.getElementById("vokabelAnzeigen").innerText =
+          "🎉 Training abgeschlossen!";
+
+        document.getElementById("eingabeFeld").style.display = "none";
+        document.querySelector("button").style.display = "none";
+        document.querySelector(".naechsteBtn").style.display = "none";
+      }
+    }
+
+    // Antwort prüfen
+    function antwortPruefen() {
+      const eingabe = document.getElementById("eingabeFeld").value.trim();
+      const richtigeAntwort = vokabeln[aktuelleIndex].deutsch;
+
+      if (eingabe.toLowerCase() === richtigeAntwort.toLowerCase()) {
+        document.getElementById("feedbackText").innerText = "✅ Richtig!";
+      } else {
+        document.getElementById("feedbackText").innerText =
+          `❌ Falsch! Richtig wäre: ${richtigeAntwort}`;
+      }
+
+      aktuelleIndex++;
+    }
+
+    // Beim Laden erste Vokabel anzeigen
+    window.onload = naechsteVokabel;
+  </script>
+
+</body>
+</html>
