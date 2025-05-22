@@ -98,18 +98,15 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo">LinguaFlow</div>
-        <nav>
-        <a href="index.php">🏠 Start</a>
-        <a href="learn.php">📖 Lernen</a>
-        <a href="progress.php">📊 Fortschritt</a>
-        <a href="community.php">💬 Community</a>
-        <a href="profile.php">👤 Profil</a>
-        </nav>
-        <div class="auth-buttons">
-            <a href="login.php" style="background: white; color: var(--primary-color); padding: 10px 20px; border-radius: 25px;">Anmelden</a>
-        </div>
+
+<!-- Topbar -->
+<div class="topbar">
+    <button class="navbar-toggler d-md-none" type="button" id="sidebarToggle">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="index.php" class="brand">LinguaFlow</a>
+    <div class="auth">
+        <a href="login.php" class="btn btn-outline-primary">Anmelden</a>
     </div>
 </div>
 
