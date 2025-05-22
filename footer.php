@@ -3,7 +3,8 @@
         <small>
             © 2025 LinguaFlow |
             <a href="impressum.php" class="text-decoration-none text-muted">Impressum</a> |
-            <a href="datenschutz.php" class="text-decoration-none text-muted">Datenschutz</a>
+            <a href="datenschutz.php" class="text-decoration-none text-muted">Datenschutz</a> |
+            <a href="logout.php" class="text-decoration-none text-muted">Logout</a> 
         </small>
     </div>
 </footer>

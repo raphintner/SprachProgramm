@@ -108,6 +108,8 @@
     <div class="auth">
         <a href="login.php" class="btn btn-outline-primary">Anmelden</a>
         <a href="auth.php?mode=register" class="btn btn-outline-primary">Jetzt registrieren</a>
+        <a href="profile.php" class="nav-link">👤 Profil</a>
+
     </div>
 </div>
 
@@ -117,8 +119,7 @@
         <a href="index.php" class="nav-link">🏠 Start</a>
         <a href="learn.php" class="nav-link">📖 Lernen</a>
         <a href="progress.php" class="nav-link">📊 Fortschritt</a>
-        <a href="community.php" class="nav-link">💬 Community</a>
-        <a href="profile.php" class="nav-link">👤 Profil</a>
+        <a href="community.php" class="nav-link">💬 Mitteilungen</a>
     </nav>
 </div>
 
