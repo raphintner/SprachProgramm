@@ -1,6 +1,7 @@
 <?php // index.php ?>
 <?php include 'header.php'; ?>
 
+
 <div class="main-content">
     <h1 style="font-size: 2em; color: var(--primary-color);">Willkommen bei LinguaFlow</h1>
 

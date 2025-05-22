@@ -1,11 +1,26 @@
 <?php
 session_start();
+
+// Benutzer bereits angemeldet?
 if (isset($_SESSION['user_id'])) {
     header("Location: auth.php");
     exit();
 }
 
-// Fehler aus der URL holen (falls vorhanden)
+// Datenbankverbindung
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'linguaflow_db';
+
+$conn = new mysqli($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+// Verbindung prüfen
+if ($conn->connect_error) {
+    die("Verbindung fehlgeschlagen: " . $conn->connect_error);
+}
+
+// Fehler aus der URL holen
 $error = $_GET['error'] ?? '';
 $mode = $_GET['mode'] ?? 'login';
 ?>
@@ -13,7 +28,6 @@ $mode = $_GET['mode'] ?? 'login';
 <?php include 'header.php'; ?>
 
 <div class="container" style="max-width: 500px; margin-top: 60px;">
-
     <ul class="nav nav-tabs mb-3">
         <li class="nav-item">
             <a class="nav-link <?= $mode === 'login' ? 'active' : '' ?>" href="?mode=login">Anmelden</a>
@@ -59,7 +73,6 @@ $mode = $_GET['mode'] ?? 'login';
             <button type="submit" class="btn btn-primary">Jetzt anmelden</button>
         </form>
     <?php endif; ?>
-
 </div>
 
 <?php include 'footer.php'; ?>
