@@ -28,19 +28,4 @@
             <p>Verfolge deine täglichen Erfolge, Wiederholungen und Lerntage in deinem persönlichen Dashboard.</p>
         </div>
     </div>
-
-    <!-- Registrierung -->
-    <div style="margin-top: 50px;">
-        <h2 style="color: var(--secondary-color);">Jetzt kostenlos registrieren</h2>
-        <form action="register.php" method="post" style="max-width: 400px; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-            <input type="text" name="username" placeholder="Benutzername" required style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc;">
-            <input type="email" name="email" placeholder="E-Mail" required style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc;">
-            <input type="password" name="password" placeholder="Passwort" required style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc;">
-            <button type="submit" style="background: var(--secondary-color); color: white; padding: 12px 30px; border: none; border-radius: 25px; margin-top: 15px; cursor: pointer;">
-                Registrieren
-            </button>
-        </form>
-    </div>
-</div>
-
 <?php include 'footer.php'; ?>

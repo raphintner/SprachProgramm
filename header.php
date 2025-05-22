@@ -105,10 +105,12 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a href="index.php" class="brand">LinguaFlow</a>
-    <div class="auth">
-        <a href="login.php" class="btn btn-outline-primary">Anmelden</a>
-        <a href="auth.php?mode=register" class="btn btn-outline-primary">Jetzt registrieren</a>
-        <a href="profile.php" class="nav-link">👤 Profil</a>
+       <div class="auth">
+    <a href="auth.php" class="btn btn-light rounded-circle shadow-sm" title="Profil" style="font-size: 1.2rem;">
+        👤
+    </a>
+</div>
+
 
     </div>
 </div>
@@ -117,7 +119,7 @@
 <div class="sidebar d-flex flex-column" id="sidebar">
     <nav class="nav flex-column">
         <a href="index.php" class="nav-link">🏠 Start</a>
-        <a href="learn.php" class="nav-link">📖 Lernen</a>
+        <a href="overview.php" class="nav-link">📖 Lernen</a>
         <a href="progress.php" class="nav-link">📊 Fortschritt</a>
         <a href="community.php" class="nav-link">💬 Mitteilungen</a>
     </nav>
