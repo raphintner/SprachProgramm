@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 // Formulardaten holen
-$username_or_email = trim($_POST['username_or_email']);
+$username_or_email = trim($_POST['username']); // <-- HIER angepasst!
 $password = trim($_POST['password']);
 
 // Nutzer anhand von Username oder E-Mail suchen
