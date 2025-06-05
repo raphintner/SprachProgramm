@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Zuordnen 2 zu 2</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f0f4f8; }
+    h1 { font-size: 24px; }
+    .bereich { display: flex; gap: 30px; margin: 30px 0; }
+    .box {
+      padding: 14px;
+      background: #2563eb;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      min-width: 120px;
+      user-select: none;
+    }
+    .box:hover { background: #1d4ed8; }
+    .selected { background: #f59e0b !important; }
+    #feedback { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h1>🔗 Zuordnen: 2 zu 2</h1>
+
+<div class="bereich" id="deutsch"></div>
+<div class="bereich" id="englisch"></div>
+
+<div id="feedback"></div>
+
+<script>
+const paare = [
+  { deutsch: "Hund", englisch: "Dog" },
+  { deutsch: "Katze", englisch: "Cat" }
+];
+
+let ausgewaehltDeutsch = null;
+let geloeste = 0;
+
+function anzeigen() {
+  // Deutsche Wörter
+  const deutschDiv = document.getElementById("deutsch");
+  deutschDiv.innerHTML = "";
+  paare.forEach((paar, i) => {
+    let btn = document.createElement("div");
+    btn.className = "box";
+    btn.innerText = paar.deutsch;
+    btn.onclick = () => deutschWaehlen(i, btn);
+    deutschDiv.appendChild(btn);
+  });
+
+  // Englische Wörter (zufällig mischen)
+  const englischDiv = document.getElementById("englisch");
+  englischDiv.innerHTML = "";
+  let englischWoerter = paare.map(p => p.englisch);
+  englischWoerter.sort(() => Math.random() - 0.5);
+  englischWoerter.forEach(wort => {
+    let btn = document.createElement("div");
+    btn.className = "box";
+    btn.innerText = wort;
+    btn.onclick = () => englischWaehlen(wort, btn);
+    englischDiv.appendChild(btn);
+  });
+}
+
+function deutschWaehlen(index, button) {
+  // Vorherige Auswahl zurücksetzen
+  let alle = document.querySelectorAll("#deutsch .box");
+  alle.forEach(b => b.classList.remove("selected"));
+
+  // Neue Auswahl speichern und markieren
+  ausgewaehltDeutsch = index;
+  button.classList.add("selected");
+}
+
+function englischWaehlen(wort, button) {
+  if (ausgewaehltDeutsch === null) {
+    alert("Wähle zuerst ein deutsches Wort aus!");
+    return;
+  }
+
+  let korrekt = paare[ausgewaehltDeutsch].englisch;
+
+  if (wort === korrekt) {
+    document.getElementById("feedback").innerText = 
+      `✅ Richtig: ${paare[ausgewaehltDeutsch].deutsch} = ${wort}`;
+    geloeste++;
+
+    // Entferne zugeordnete Wörter
+    document.querySelectorAll("#deutsch .box")[ausgewaehltDeutsch].remove();
+    button.remove();
+
+    if (geloeste === paare.length) {
+      document.getElementById("feedback").innerText = "🎉 Alles richtig!";
+    }
+  } else {
+    document.getElementById("feedback").innerText = 
+      `❌ Falsch! ${paare[ausgewaehltDeutsch].deutsch} ist nicht ${wort}`;
+  }
+
+  // Auswahl zurücksetzen
+  ausgewaehltDeutsch = null;
+  document.querySelectorAll("#deutsch .box").forEach(b => b.classList.remove("selected"));
+}
+
+anzeigen();
+include("index.php");
+</script>
+
+</body>
+</html>
