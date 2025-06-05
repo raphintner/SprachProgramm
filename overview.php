@@ -162,19 +162,19 @@
     <div class="modus-card">
       <h3>📝 Selbst schreiben</h3>
       <p>Gib die richtige Übersetzung zu einer Vokabel ein und verbessere dein aktives Sprachwissen.</p>
-      <button onclick="seiteWechseln('selbstSchreiben.html')">Starten</button>
+      <button onclick="seiteWechseln('selbstSchreiben.php')">Starten</button>
     </div>
 
     <div class="modus-card">
       <h3>🔗 Zuordnen</h3>
       <p>Ordne die richtige Übersetzung einer Vokabel aus mehreren Antwortmöglichkeiten zu.</p>
-      <button onclick="seiteWechseln('zuordnen.html')">Starten</button>
+      <button onclick="seiteWechseln('zuordnen.php')">Starten</button>
     </div>
 
     <div class="modus-card">
       <h3>❓ Multiple Choice</h3>
       <p>Wähle aus vier Antwortmöglichkeiten die richtige Übersetzung zur angezeigten Vokabel.</p>
-      <button onclick="seiteWechseln('multipleChoice.html')">Starten</button>
+      <button onclick="seiteWechseln('multipleChoice.php')">Starten</button>
     </div>
   </div>
 </div>

@@ -1,3 +1,36 @@
+<?php
+session_start();
+
+// Prüfen, ob der Nutzer eingeloggt ist
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php?error=Bitte zuerst anmelden.");
+    exit();
+}
+
+// Datenbankverbindung
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'linguaflow_db';
+
+$conn = new mysqli($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+if ($conn->connect_error) {
+    die("Verbindung fehlgeschlagen: " . $conn->connect_error);
+}
+
+$user_id = $_SESSION['user_id'];
+$vokabeln = [];
+$sql = "SELECT word AS frage, translation AS antwort FROM vocab WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+while ($row = $result->fetch_assoc()) {
+    $vokabeln[] = $row;
+}
+$stmt->close();
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -44,8 +77,7 @@
 
 <div class="lern-content">
   <h1>Selbst Schreiben</h1>
-
-  <div id="vokabel">Apple</div>
+  <div id="vokabel"></div>
   <input type="text" id="antwort" placeholder="Übersetzung eingeben">
   <br>
   <button onclick="pruefen()">Prüfen</button>
@@ -56,12 +88,21 @@
 </div>
 
 <script>
-const vokabeln = [
-  {frage: "Apple", antwort: "Apfel"},
-  {frage: "House", antwort: "Haus"}
-];
+const vokabeln = <?php echo json_encode($vokabeln); ?>;
 
 let aktuelle = 0;
+
+function anzeigen() {
+  if(vokabeln.length === 0) {
+    document.getElementById("vokabel").textContent = "Keine Vokabeln gefunden!";
+    document.getElementById("antwort").style.display = "none";
+    document.getElementById("feedback").textContent = "";
+    return;
+  }
+  document.getElementById("vokabel").textContent = vokabeln[aktuelle].frage;
+  document.getElementById("antwort").value = "";
+  document.getElementById("feedback").textContent = "";
+}
 
 function pruefen() {
   const eingabe = document.getElementById("antwort").value;
@@ -75,12 +116,11 @@ function pruefen() {
 
 function neueVokabel() {
   aktuelle = (aktuelle + 1) % vokabeln.length;
-  document.getElementById("vokabel").textContent = vokabeln[aktuelle].frage;
-  document.getElementById("antwort").value = "";
-  document.getElementById("feedback").textContent = "";
+  anzeigen();
 }
-include("footer.php");
 
+// Beim Laden direkt anzeigen:
+anzeigen();
 </script>
 
 </body>
