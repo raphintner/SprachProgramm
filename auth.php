@@ -3,7 +3,7 @@ session_start();
 
 // Benutzer bereits angemeldet?
 if (isset($_SESSION['user_id'])) {
-    header("Location: auth.php");
+    header("Location: index.php");
     exit();
 }
 
