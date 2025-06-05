@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Selbst Schreiben</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    .lern-content {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin: 10px 5px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 80%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="lern-content">
+  <h1>Selbst Schreiben</h1>
+
+  <div id="vokabel">Apple</div>
+  <input type="text" id="antwort" placeholder="Übersetzung eingeben">
+  <br>
+  <button onclick="pruefen()">Prüfen</button>
+  <p id="feedback"></p>
+  <button onclick="neueVokabel()">Nächste Vokabel</button>
+  <br><br>
+  <button onclick="window.location.href='index.php'">Zurück</button>
+</div>
+
+<script>
+const vokabeln = [
+  {frage: "Apple", antwort: "Apfel"},
+  {frage: "House", antwort: "Haus"}
+];
+
+let aktuelle = 0;
+
+function pruefen() {
+  const eingabe = document.getElementById("antwort").value;
+  if (eingabe.toLowerCase() === vokabeln[aktuelle].antwort.toLowerCase()) {
+    document.getElementById("feedback").textContent = "Richtig!";
+  } else {
+    document.getElementById("feedback").textContent =
+      "Falsch. Richtig: " + vokabeln[aktuelle].antwort;
+  }
+}
+
+function neueVokabel() {
+  aktuelle = (aktuelle + 1) % vokabeln.length;
+  document.getElementById("vokabel").textContent = vokabeln[aktuelle].frage;
+  document.getElementById("antwort").value = "";
+  document.getElementById("feedback").textContent = "";
+}
+include("footer.php");
+
+</script>
+
+</body>
+</html>

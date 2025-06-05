@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Zuordnen</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f0f4f8; }
+    h1 { font-size: 24px; }
+    .vokabel { font-size: 28px; margin-bottom: 20px; }
+    .option { 
+      padding: 12px; 
+      background: #2563eb; 
+      color: #fff; 
+      margin: 10px 0; 
+      cursor: pointer; 
+      border-radius: 8px;
+    }
+    .option:hover { background: #1d4ed8; }
+    #feedback { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h1>🔗 Zuordnen</h1>
+<div class="vokabel" id="vokabel"></div>
+
+<div id="optionen"></div>
+<div id="feedback"></div>
+
+<script>
+const vokabeln = [
+  { englisch: "Dog", deutsch: "Hund" },
+  { englisch: "Cat", deutsch: "Katze" },
+  { englisch: "House", deutsch: "Haus" },
+  { englisch: "Apple", deutsch: "Apfel" }
+];
+
+let index = 0;
+
+function anzeigen() {
+  if (index >= vokabeln.length) {
+    document.body.innerHTML = "<h1>🎉 Training abgeschlossen!</h1>";
+    return;
+  }
+
+  document.getElementById("vokabel").innerText = vokabeln[index].englisch;
+
+  let optionen = [vokabeln[index].deutsch];
+  while (optionen.length < 4) {
+    let random = vokabeln[Math.floor(Math.random() * vokabeln.length)].deutsch;
+    if (!optionen.includes(random)) optionen.push(random);
+  }
+
+  optionen.sort(() => Math.random() - 0.5);
+
+  const optionenDiv = document.getElementById("optionen");
+  optionenDiv.innerHTML = "";
+
+  optionen.forEach(opt => {
+    let btn = document.createElement("div");
+    btn.className = "option";
+    btn.innerText = opt;
+    btn.onclick = () => pruefen(opt);
+    optionenDiv.appendChild(btn);
+  });
+}
+
+function pruefen(antwort) {
+  if (antwort === vokabeln[index].deutsch) {
+    document.getElementById("feedback").innerText = "✅ Richtig!";
+  } else {
+    document.getElementById("feedback").innerText = 
+      `❌ Falsch! Richtig: ${vokabeln[index].deutsch}`;
+  }
+  index++;
+  setTimeout(anzeigen, 1000);
+}
+
+anzeigen();
+</script>
+
+</body>
+</html>
