@@ -120,7 +120,7 @@
     <nav class="nav flex-column">
         <a href="index.php" class="nav-link">🏠 Start</a>
         <a href="overview.php" class="nav-link">📖 Lernen</a>
-        <a href="progress.php" class="nav-link">📊 Fortschritt</a>
+        <a href="dashboard.php" class="nav-link">📊 Fortschritt</a>
         <a href="community.php" class="nav-link">💬 Mitteilungen</a>
     </nav>
 </div>
